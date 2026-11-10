@@ -1,0 +1,124 @@
+let score = 0;
+
+function scrollToGame(){
+
+document
+.getElementById("game")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+function completeArea(button){
+
+if(button.disabled) return;
+
+button.disabled = true;
+
+button.style.background =
+"#4caf50";
+
+score += 10;
+
+document.getElementById("score")
+.innerText = score;
+
+document.getElementById("progress")
+.value = score;
+
+checkBadges();
+
+}
+
+function checkBadges(){
+
+const badgeList =
+document.getElementById("badgeList");
+
+if(score >= 30 &&
+!badgeList.innerHTML.includes("Community Champion")){
+
+badgeList.innerHTML +=
+"<br>🥈 Community Champion";
+
+}
+
+if(score >= 70 &&
+!badgeList.innerHTML.includes("SEWB Master")){
+
+badgeList.innerHTML +=
+"<br>🥇 SEWB Master";
+
+}
+}
+
+function newChallenge(){
+
+const challenges = [
+
+"Go for a 15 minute walk outdoors.",
+
+"Spend 10 minutes in nature.",
+
+"Talk with a trusted family member.",
+
+"Practice gratitude and write three positive things.",
+
+"Listen to relaxing music.",
+
+"Help someone today.",
+
+"Learn something about local First Nations culture.",
+
+"Connect with community.",
+
+"Practice deep breathing for two minutes."
+
+];
+
+const random =
+Math.floor(
+Math.random()*challenges.length
+);
+
+document.getElementById(
+"challengeText"
+).innerText =
+challenges[random];
+
+}
+
+function showYarn(type){
+
+let response = "";
+
+switch(type){
+
+case "stress":
+response =
+"Take a few slow breaths. Consider going outside and connecting with nature or talking to someone you trust.";
+break;
+
+case "sad":
+response =
+"It's OK to seek support. Reach out to family, friends or a support service.";
+break;
+
+case "angry":
+response =
+"Step away, breathe slowly and give yourself time before responding.";
+break;
+
+case "lonely":
+response =
+"Connection is important. Contact a friend, family member, youth group or support service.";
+break;
+
+}
+
+document.getElementById(
+"yarningResult"
+).innerText = response;
+
+}
