@@ -6,296 +6,389 @@
 <title>Strong Minds Youth Hub</title>
 
 <style>
+
+:root{
+--ochre:#c96f1d;
+--sand:#e8c07d;
+--earth:#954c2e;
+--reef:#00a6a6;
+--forest:#46754b;
+--night:#1a1a2e;
+}
+
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,sans-serif;
 }
 
 body{
-    background:#f6f7f9;
-    color:#333;
-    line-height:1.6;
+background:#f6f7f9;
+color:#222;
+transition:0.4s;
 }
 
-/* Hero Section */
-.hero{
-    background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),
-    url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3');
-    background-size:cover;
-    background-position:center;
-    color:white;
-    text-align:center;
-    padding:80px 20px;
+.dark{
+background:#111827;
+color:white;
 }
 
-.hero h1{
-    font-size:3rem;
-    margin-bottom:10px;
+header{
+background:linear-gradient(135deg,var(--earth),var(--reef));
+color:white;
+padding:60px 20px;
+text-align:center;
 }
 
-.hero p{
-    max-width:700px;
-    margin:auto;
+header h1{
+font-size:3rem;
 }
 
-/* Indigenous Inspired Pattern */
 .pattern{
-    height:70px;
-    background:
-      radial-gradient(circle,#e85d04 12%,transparent 13%) 0 0/40px 40px,
-      radial-gradient(circle,#ffba08 12%,transparent 13%) 20px 20px/40px 40px,
-      #264653;
+height:80px;
+background:
+radial-gradient(circle,var(--sand) 10%, transparent 11%) 0 0/40px 40px,
+radial-gradient(circle,var(--ochre) 10%, transparent 11%) 20px 20px/40px 40px,
+var(--earth);
 }
 
-/* Layout */
 .container{
-    width:90%;
-    max-width:1200px;
-    margin:auto;
-    padding:40px 0;
-}
-
-.card-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:20px;
+max-width:1200px;
+margin:auto;
+padding:30px;
 }
 
 .card{
-    background:white;
-    padding:25px;
-    border-radius:15px;
-    box-shadow:0 4px 12px rgba(0,0,0,.1);
-    transition:0.3s;
+background:white;
+padding:20px;
+margin-bottom:20px;
+border-radius:15px;
+box-shadow:0 4px 12px rgba(0,0,0,.1);
 }
 
-.card:hover{
-    transform:translateY(-5px);
-}
-
-.card h3{
-    color:#2a9d8f;
-    margin-bottom:15px;
+.dark .card{
+background:#1f2937;
 }
 
 button{
-    background:#2a9d8f;
-    color:white;
-    border:none;
-    padding:12px 18px;
-    border-radius:8px;
-    cursor:pointer;
+background:var(--reef);
+color:white;
+border:none;
+padding:12px 18px;
+margin:5px;
+border-radius:8px;
+cursor:pointer;
 }
 
 button:hover{
-    background:#21867a;
+opacity:.9;
 }
 
-.resource-links a{
-    display:block;
-    margin:10px 0;
-    text-decoration:none;
-    color:#006d77;
-    font-weight:600;
+.map-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
 }
 
-.quiz-box{
-    background:#fff;
-    padding:30px;
-    border-radius:15px;
-    margin-top:30px;
-    box-shadow:0 4px 10px rgba(0,0,0,.08);
+.region{
+cursor:pointer;
+background:var(--sand);
+padding:20px;
+border-radius:12px;
+}
+
+.quote{
+margin-top:15px;
+font-style:italic;
+font-size:1.1rem;
+}
+
+.challenge{
+display:flex;
+align-items:center;
+gap:10px;
+padding:10px;
+}
+
+.score{
+font-size:2rem;
+color:var(--forest);
+margin-top:15px;
+}
+
+.help{
+background:#d62828;
+font-size:1.2rem;
+width:100%;
 }
 
 footer{
-    background:#264653;
-    color:white;
-    text-align:center;
-    padding:30px;
-    margin-top:40px;
+background:var(--night);
+color:white;
+text-align:center;
+padding:20px;
+margin-top:30px;
 }
 
-.helpline{
-    background:#ffe8d6;
-    border-left:6px solid #e76f51;
-    padding:15px;
-    border-radius:10px;
-    margin:15px 0;
+a{
+color:var(--reef);
 }
 
-.disclaimer{
-    background:#edf6f9;
-    padding:15px;
-    border-radius:10px;
-    margin-top:20px;
-}
 </style>
 </head>
+
 <body>
 
-<section class="hero">
-    <h1>Strong Minds Youth Hub</h1>
-    <p>
-        A safe place for young people to learn about mental health,
-        wellbeing, culture, resilience, and healthy choices.
-    </p>
-</section>
+<header>
+<h1>Strong Minds Youth Hub</h1>
+<p>Strong Minds • Strong Culture • Strong Futures</p>
+
+<br>
+
+<button onclick="toggleDarkMode()">
+🌙 Toggle Dark Mode
+</button>
+</header>
 
 <div class="pattern"></div>
 
 <div class="container">
 
-    <h2 style="margin-bottom:25px;">Your Wellbeing Matters</h2>
+<div class="card">
+<h2>🚨 Get Help Now</h2>
+<p>If you're in immediate danger call 000.</p>
 
-    <div class="card-grid">
+<button class="help"
+onclick="window.open('https://kidshelpline.com.au')">
+Kids Helpline 1800 55 1800
+</button>
 
-        <div class="card">
-            <h3>🧠 Mental Health</h3>
-            <p>
-                Everyone has mental health just like everyone has physical health.
-                It's okay to ask for help if you're feeling overwhelmed,
-                stressed, anxious, sad, or disconnected.
-            </p>
-        </div>
+<br>
 
-        <div class="card">
-            <h3>🌿 Culture & Connection</h3>
-            <p>
-                Connection to family, community, Country, culture,
-                language and identity can support wellbeing,
-                resilience and belonging.
-            </p>
-        </div>
+<button
+onclick="window.open('https://headspace.org.au')">
+Headspace
+</button>
 
-        <div class="card">
-            <h3>💬 Looking After Yourself</h3>
-            <p>
-                Healthy sleep, exercise, friendships,
-                hobbies and talking to trusted adults
-                all contribute to positive mental health.
-            </p>
-        </div>
+<button
+onclick="window.open('https://www.reachout.com')">
+ReachOut
+</button>
+</div>
 
-    </div>
+<div class="card">
 
-    <div class="quiz-box">
-        <h2>Check In With Yourself</h2>
+<h2>😊 Mood Check-In</h2>
 
-        <p style="margin-top:15px;">
-            How are you feeling today?
-        </p>
+<button onclick="mood('great')">😁 Great</button>
+<button onclick="mood('good')">🙂 Good</button>
+<button onclick="mood('okay')">😐 Okay</button>
+<button onclick="mood('struggling')">😔 Struggling</button>
 
-        <br>
+<p id="moodMessage" class="quote"></p>
 
-        <button onclick="showMessage('happy')">😊 Good</button>
-        <button onclick="showMessage('okay')">🙂 Okay</button>
-        <button onclick="showMessage('struggling')">😔 Not Great</button>
+</div>
 
-        <p id="result" style="margin-top:20px;font-weight:bold;"></p>
-    </div>
+<div class="card">
 
-    <div class="quiz-box">
-        <h2>Substance Use Education</h2>
+<h2>🌱 Build Your Wellbeing Tree</h2>
 
-        <p style="margin-top:15px;">
-            Drugs, alcohol and vaping can affect developing brains,
-            learning, sport performance, relationships and mental health.
-        </p>
+<div class="challenge">
+<input type="checkbox" onclick="updateScore()">
+Drank enough water
+</div>
 
-        <ul style="margin-top:15px;padding-left:20px;">
-            <li>Know the facts before making decisions.</li>
-            <li>Talk to trusted adults and health professionals.</li>
-            <li>Learn how substances can affect mental wellbeing.</li>
-            <li>Support friends by encouraging healthy help-seeking.</li>
-        </ul>
-    </div>
+<div class="challenge">
+<input type="checkbox" onclick="updateScore()">
+Went for a walk
+</div>
 
-    <div class="quiz-box resource-links">
+<div class="challenge">
+<input type="checkbox" onclick="updateScore()">
+Talked to someone
+</div>
 
-        <h2>📞 Helplines & Support</h2>
+<div class="challenge">
+<input type="checkbox" onclick="updateScore()">
+Had good sleep
+</div>
 
-        <div class="helpline">
-            If someone is in immediate danger or a medical emergency,
-            call <strong>000</strong>.
-        </div>
+<div class="challenge">
+<input type="checkbox" onclick="updateScore()">
+Connected with culture or community
+</div>
 
-        <a href="https://kidshelpline.com.au" target="_blank">
-            Kids Helpline (24/7)
-        </a>
+<p class="score">
+🌳 Tree Growth Score:
+<span id="score">0</span>/5
+</p>
 
-        <a href="https://headspace.org.au" target="_blank">
-            Headspace
-        </a>
+</div>
 
-        <a href="https://beyondblue.org.au" target="_blank">
-            Beyond Blue
-        </a>
+<div class="card">
 
-        <a href="https://reachout.com" target="_blank">
-            ReachOut Australia
-        </a>
+<h2>🗺️ Explore Country</h2>
 
-        <a href="https://www.healthdirect.gov.au" target="_blank">
-            Healthdirect Australia
-        </a>
+<p>
+Select a region to learn about connection,
+community and wellbeing.
+</p>
 
-    </div>
+<br>
 
-    <div class="quiz-box resource-links">
+<div class="map-grid">
 
-        <h2>📚 Substance Use Information</h2>
+<div class="region"
+onclick="showRegion('nqld')">
+🌊 North Queensland
+</div>
 
-        <a href="https://adf.org.au" target="_blank">
-            Alcohol and Drug Foundation
-        </a>
+<div class="region"
+onclick="showRegion('cape')">
+🏝 Cape York & Torres Strait
+</div>
 
-        <a href="https://positivechoices.org.au" target="_blank">
-            Positive Choices
-        </a>
+<div class="region"
+onclick="showRegion('kimberley')">
+🌄 Kimberley WA
+</div>
 
-        <a href="https://headspace.org.au" target="_blank">
-            Headspace Alcohol & Other Drugs Support
-        </a>
+<div class="region"
+onclick="showRegion('pilbara')">
+🌅 Pilbara WA
+</div>
 
-    </div>
+</div>
 
-    <div class="disclaimer">
-        <strong>Acknowledgement:</strong>
-        We acknowledge Aboriginal and Torres Strait Islander peoples as the
-        Traditional Custodians of Australia and recognise their continuing
-        connection to Country, culture and community.
-    </div>
+<p id="regionInfo" class="quote"></p>
+
+</div>
+
+<div class="card">
+
+<h2>🧠 Mental Health Quiz</h2>
+
+<p>
+True or False:
+It's normal to ask for help when you're struggling.
+</p>
+
+<br>
+
+<button onclick="quiz(true)">
+True
+</button>
+
+<button onclick="quiz(false)">
+False
+</button>
+
+<p id="quizResult" class="quote"></p>
+
+</div>
+
+<div class="card">
+
+<h2>📚 Substance Use Education</h2>
+
+<ul>
+<li>Learn the facts before making decisions.</li>
+<li>Alcohol, vaping and drugs can affect mental wellbeing.</li>
+<li>Talk to trusted adults when you need advice.</li>
+<li>Support friends to seek help.</li>
+</ul>
+
+<br>
+
+<a href="https://adf.org.au" target="_blank">
+Alcohol & Drug Foundation
+</a>
+<br><br>
+
+<a href="https://positivechoices.org.au" target="_blank">
+Positive Choices
+</a>
+
+</div>
 
 </div>
 
 <footer>
-    Strong Minds Youth Hub • Supporting youth wellbeing, resilience and connection.
+Acknowledgement of Aboriginal and Torres Strait Islander peoples as Traditional Custodians of Country throughout Australia.
 </footer>
 
 <script>
-function showMessage(mood){
 
-    let message = "";
-
-    if(mood === "happy"){
-        message =
-        "Awesome! Keep doing things that support your wellbeing and stay connected with people who care about you.";
-    }
-
-    if(mood === "okay"){
-        message =
-        "It's okay to have ups and downs. Consider talking with a friend, family member, teacher or counsellor.";
-    }
-
-    if(mood === "struggling"){
-        message =
-        "You're not alone. Reach out to a trusted adult or one of the support services listed below today.";
-    }
-
-    document.getElementById("result").innerText = message;
+function toggleDarkMode() {
+document.body.classList.toggle("dark");
 }
+
+function mood(type){
+
+const messages = {
+
+great:
+"Fantastic. Keep doing what supports your wellbeing and share positivity with others.",
+
+good:
+"Great work. Keep connected with friends, family and community.",
+
+okay:
+"It's okay to have ups and downs. Take time for yourself and stay connected.",
+
+struggling:
+"You are not alone. Consider reaching out to Kids Helpline, Headspace or a trusted adult."
+
+};
+
+document.getElementById("moodMessage").innerText =
+messages[type];
+}
+
+function updateScore(){
+
+let total =
+document.querySelectorAll('input[type="checkbox"]:checked').length;
+
+document.getElementById("score").innerText = total;
+}
+
+function showRegion(region){
+
+let text = "";
+
+if(region=="nqld"){
+text="North Queensland highlights the importance of community, connection, reef, rainforest and Country.";
+}
+
+if(region=="cape"){
+text="Cape York and Torres Strait communities demonstrate resilience, culture, language and strong family connections.";
+}
+
+if(region=="kimberley"){
+text="The Kimberley region is known for strong cultural traditions, storytelling and connection to Country.";
+}
+
+if(region=="pilbara"){
+text="Pilbara communities highlight wellbeing through community, culture and connection to the land.";
+}
+
+document.getElementById("regionInfo").innerText=text;
+}
+
+function quiz(answer){
+
+if(answer){
+document.getElementById("quizResult").innerHTML=
+"✅ Correct! Asking for help is a sign of strength.";
+}
+else{
+document.getElementById("quizResult").innerHTML=
+"❌ Not quite. Seeking support is healthy and encouraged.";
+}
+}
+
 </script>
 
 </body>
