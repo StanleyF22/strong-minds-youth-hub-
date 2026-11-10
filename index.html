@@ -3,136 +3,106 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Strong Minds Youth Hub</title>
+
+<title>Strong Connections - SEWB Journey</title>
 
 <style>
 
-:root{
---ochre:#c96f1d;
---sand:#e8c07d;
---earth:#954c2e;
---reef:#00a6a6;
---forest:#46754b;
---night:#1a1a2e;
-}
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Segoe UI,sans-serif;
-}
-
 body{
-background:#f6f7f9;
+margin:0;
+font-family:Segoe UI,sans-serif;
+background:#f5f5f5;
 color:#222;
-transition:0.4s;
 }
 
-.dark{
-background:#111827;
-color:white;
-}
-
-header{
-background:linear-gradient(135deg,var(--earth),var(--reef));
-color:white;
-padding:60px 20px;
+.hero{
+height:70vh;
+background:
+linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
+url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee");
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+justify-content:center;
 text-align:center;
+color:white;
 }
 
-header h1{
+.hero h1{
 font-size:3rem;
 }
 
-.pattern{
-height:80px;
-background:
-radial-gradient(circle,var(--sand) 10%, transparent 11%) 0 0/40px 40px,
-radial-gradient(circle,var(--ochre) 10%, transparent 11%) 20px 20px/40px 40px,
-var(--earth);
-}
-
-.container{
+.section{
+padding:40px 20px;
 max-width:1200px;
 margin:auto;
-padding:30px;
 }
 
 .card{
 background:white;
 padding:20px;
-margin-bottom:20px;
+margin:15px 0;
 border-radius:15px;
-box-shadow:0 4px 12px rgba(0,0,0,.1);
+box-shadow:0 3px 12px rgba(0,0,0,.1);
 }
 
-.dark .card{
-background:#1f2937;
+.sewb{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+}
+
+.wheel{
+background:#00897b;
+color:white;
+padding:20px;
+border-radius:12px;
+cursor:pointer;
+text-align:center;
+transition:.3s;
+}
+
+.wheel:hover{
+transform:scale(1.05);
+}
+
+.score{
+font-size:2rem;
+font-weight:bold;
+color:#d35400;
 }
 
 button{
-background:var(--reef);
+background:#00897b;
 color:white;
 border:none;
-padding:12px 18px;
-margin:5px;
+padding:12px 20px;
 border-radius:8px;
 cursor:pointer;
 }
 
 button:hover{
-opacity:.9;
+opacity:.8;
 }
 
-.map-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
+.support{
+background:#fff8e1;
+border-left:6px solid orange;
+padding:15px;
+margin:10px 0;
 }
 
-.region{
-cursor:pointer;
-background:var(--sand);
-padding:20px;
-border-radius:12px;
-}
-
-.quote{
-margin-top:15px;
-font-style:italic;
-font-size:1.1rem;
-}
-
-.challenge{
-display:flex;
-align-items:center;
-gap:10px;
-padding:10px;
-}
-
-.score{
-font-size:2rem;
-color:var(--forest);
-margin-top:15px;
-}
-
-.help{
-background:#d62828;
-font-size:1.2rem;
+.progress{
 width:100%;
+height:25px;
 }
 
 footer{
-background:var(--night);
+background:#222;
 color:white;
+padding:30px;
 text-align:center;
-padding:20px;
-margin-top:30px;
-}
-
-a{
-color:var(--reef);
 }
 
 </style>
@@ -140,253 +110,257 @@ color:var(--reef);
 
 <body>
 
-<header>
-<h1>Strong Minds Youth Hub</h1>
-<p>Strong Minds • Strong Culture • Strong Futures</p>
+<div class="hero">
+<div>
+<h1>Strong Connections</h1>
+<h2>Your Journey to Social & Emotional Wellbeing</h2>
+<p>Culture • Country • Community • Connection</p>
+</div>
+</div>
 
-<br>
-
-<button onclick="toggleDarkMode()">
-🌙 Toggle Dark Mode
-</button>
-</header>
-
-<div class="pattern"></div>
-
-<div class="container">
+<section class="section">
 
 <div class="card">
-<h2>🚨 Get Help Now</h2>
-<p>If you're in immediate danger call 000.</p>
+<h2>Welcome</h2>
 
-<button class="help"
-onclick="window.open('https://kidshelpline.com.au')">
-Kids Helpline 1800 55 1800
-</button>
-
-<br>
-
-<button
-onclick="window.open('https://headspace.org.au')">
-Headspace
-</button>
-
-<button
-onclick="window.open('https://www.reachout.com')">
-ReachOut
-</button>
-</div>
-
-<div class="card">
-
-<h2>😊 Mood Check-In</h2>
-
-<button onclick="mood('great')">😁 Great</button>
-<button onclick="mood('good')">🙂 Good</button>
-<button onclick="mood('okay')">😐 Okay</button>
-<button onclick="mood('struggling')">😔 Struggling</button>
-
-<p id="moodMessage" class="quote"></p>
-
-</div>
-
-<div class="card">
-
-<h2>🌱 Build Your Wellbeing Tree</h2>
-
-<div class="challenge">
-<input type="checkbox" onclick="updateScore()">
-Drank enough water
-</div>
-
-<div class="challenge">
-<input type="checkbox" onclick="updateScore()">
-Went for a walk
-</div>
-
-<div class="challenge">
-<input type="checkbox" onclick="updateScore()">
-Talked to someone
-</div>
-
-<div class="challenge">
-<input type="checkbox" onclick="updateScore()">
-Had good sleep
-</div>
-
-<div class="challenge">
-<input type="checkbox" onclick="updateScore()">
-Connected with culture or community
-</div>
+<p>
+This wellbeing journey is inspired by the Social and Emotional Wellbeing framework.
+Explore the seven wellbeing areas and build your own wellbeing score.
+</p>
 
 <p class="score">
-🌳 Tree Growth Score:
-<span id="score">0</span>/5
+Points:
+<span id="points">0</span>
 </p>
+
+<progress class="progress" id="progress"
+value="0"
+max="70">
+</progress>
 
 </div>
 
+<h2>SEWB Journey</h2>
+
+<div class="sewb">
+
+<div class="wheel" onclick="completeChallenge(10)">
+🧠 Mind & Emotions
+</div>
+
+<div class="wheel" onclick="completeChallenge(10)">
+💪 Body
+</div>
+
+<div class="wheel" onclick="completeChallenge(10)">
+👨‍👩‍👧 Family & Kin
+</div>
+
+<div class="wheel" onclick="completeChallenge(10)">
+🤝 Community
+</div>
+
+<div class="wheel" onclick="completeChallenge(10)">
+🎨 Culture
+</div>
+
+<div class="wheel" onclick="completeChallenge(10)">
+🏞 Country
+</div>
+
+<div class="wheel" onclick="completeChallenge(10)">
+✨ Spirit & Ancestors
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
 <div class="card">
 
-<h2>🗺️ Explore Country</h2>
+<h2>Culture & Wellbeing</h2>
 
 <p>
-Select a region to learn about connection,
-community and wellbeing.
+Aboriginal and Torres Strait Islander Social and Emotional Wellbeing recognises that wellbeing is connected to body, mind and emotions, family, community, culture, Country and spirituality.
 </p>
-
-<br>
-
-<div class="map-grid">
-
-<div class="region"
-onclick="showRegion('nqld')">
-🌊 North Queensland
-</div>
-
-<div class="region"
-onclick="showRegion('cape')">
-🏝 Cape York & Torres Strait
-</div>
-
-<div class="region"
-onclick="showRegion('kimberley')">
-🌄 Kimberley WA
-</div>
-
-<div class="region"
-onclick="showRegion('pilbara')">
-🌅 Pilbara WA
-</div>
-
-</div>
-
-<p id="regionInfo" class="quote"></p>
-
-</div>
-
-<div class="card">
-
-<h2>🧠 Mental Health Quiz</h2>
 
 <p>
-True or False:
-It's normal to ask for help when you're struggling.
+Traditional strengths can include:
 </p>
-
-<br>
-
-<button onclick="quiz(true)">
-True
-</button>
-
-<button onclick="quiz(false)">
-False
-</button>
-
-<p id="quizResult" class="quote"></p>
-
-</div>
-
-<div class="card">
-
-<h2>📚 Substance Use Education</h2>
 
 <ul>
-<li>Learn the facts before making decisions.</li>
-<li>Alcohol, vaping and drugs can affect mental wellbeing.</li>
-<li>Talk to trusted adults when you need advice.</li>
-<li>Support friends to seek help.</li>
+<li>Yarning</li>
+<li>Connection to Country</li>
+<li>Cultural identity</li>
+<li>Storytelling</li>
+<li>Connection with Elders</li>
+<li>Community activities</li>
+<li>Art and creative expression</li>
 </ul>
 
-<br>
+</div>
 
-<a href="https://adf.org.au" target="_blank">
-Alcohol & Drug Foundation
+</section>
+
+<section class="section">
+
+<div class="card">
+
+<h2>Daily Wellbeing Challenge</h2>
+
+<button onclick="randomChallenge()">
+Get Challenge
+</button>
+
+<p id="challenge"></p>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<div class="card">
+
+<h2>Townsville Supports</h2>
+
+<div class="support">
+<h3>TAIHS</h3>
+<p>
+Townsville Aboriginal and Islander Health Service provides culturally appropriate health, youth and social and emotional wellbeing services.
+</p>
+
+<a href="https://taihs.net.au">
+Visit TAIHS
 </a>
-<br><br>
 
-<a href="https://positivechoices.org.au" target="_blank">
-Positive Choices
+</div>
+
+<div class="support">
+<h3>Headspace Townsville</h3>
+<p>
+Free youth mental health support for young people aged 12-25.
+</p>
+
+<a href="https://headspace.org.au/headspace-centres/townsville/">
+Visit Headspace
+</a>
+
+</div>
+
+<div class="support">
+<h3>Kids Helpline</h3>
+
+<a href="https://kidshelpline.com.au">
+24/7 Support
 </a>
 
 </div>
 
 </div>
+
+</section>
+
+<section class="section">
+
+<div class="card">
+
+<h2>Country Explorer</h2>
+
+<button onclick="showCountry('reef')">
+Great Barrier Reef
+</button>
+
+<button onclick="showCountry('rainforest')">
+Rainforest
+</button>
+
+<button onclick="showCountry('sea')">
+Sea Country
+</button>
+
+<p id="country"></p>
+
+</div>
+
+</section>
 
 <footer>
-Acknowledgement of Aboriginal and Torres Strait Islander peoples as Traditional Custodians of Country throughout Australia.
+
+Acknowledgement of Country
+
+<p>
+We acknowledge Aboriginal and Torres Strait Islander peoples as the Traditional Custodians of the lands, waters and skies throughout Australia.
+</p>
+
 </footer>
 
 <script>
 
-function toggleDarkMode() {
-document.body.classList.toggle("dark");
+let points=0;
+
+function completeChallenge(score){
+
+points += score;
+
+if(points > 70){
+points = 70;
 }
 
-function mood(type){
+document.getElementById("points").innerHTML = points;
 
-const messages = {
+document.getElementById("progress").value = points;
 
-great:
-"Fantastic. Keep doing what supports your wellbeing and share positivity with others.",
-
-good:
-"Great work. Keep connected with friends, family and community.",
-
-okay:
-"It's okay to have ups and downs. Take time for yourself and stay connected.",
-
-struggling:
-"You are not alone. Consider reaching out to Kids Helpline, Headspace or a trusted adult."
-
-};
-
-document.getElementById("moodMessage").innerText =
-messages[type];
 }
 
-function updateScore(){
+function randomChallenge(){
 
-let total =
-document.querySelectorAll('input[type="checkbox"]:checked').length;
+const activities = [
 
-document.getElementById("score").innerText = total;
+"Go for a 15 minute walk outdoors",
+
+"Speak to a trusted family member",
+
+"Spend 10 minutes practising gratitude",
+
+"Learn something about local culture",
+
+"Listen to music that helps you feel calm",
+
+"Take 5 deep breaths and slow down",
+
+"Write down three things you are proud of"
+
+];
+
+const challenge =
+activities[Math.floor(Math.random()*activities.length)];
+
+document.getElementById("challenge").innerHTML =
+challenge;
+
 }
 
-function showRegion(region){
+function showCountry(place){
 
 let text = "";
 
-if(region=="nqld"){
-text="North Queensland highlights the importance of community, connection, reef, rainforest and Country.";
+if(place==="reef"){
+text="The Great Barrier Reef is part of Sea Country and has cultural significance for many Traditional Owner groups.";
 }
 
-if(region=="cape"){
-text="Cape York and Torres Strait communities demonstrate resilience, culture, language and strong family connections.";
+if(place==="rainforest"){
+text="Rainforest environments support connection to nature, reflection and wellbeing.";
 }
 
-if(region=="kimberley"){
-text="The Kimberley region is known for strong cultural traditions, storytelling and connection to Country.";
+if(place==="sea"){
+text="Sea Country reflects connection to waters, islands, stories and traditional knowledge.";
 }
 
-if(region=="pilbara"){
-text="Pilbara communities highlight wellbeing through community, culture and connection to the land.";
-}
+document.getElementById("country").innerHTML = text;
 
-document.getElementById("regionInfo").innerText=text;
-}
-
-function quiz(answer){
-
-if(answer){
-document.getElementById("quizResult").innerHTML=
-"✅ Correct! Asking for help is a sign of strength.";
-}
-else{
-document.getElementById("quizResult").innerHTML=
-"❌ Not quite. Seeking support is healthy and encouraged.";
-}
 }
 
 </script>
