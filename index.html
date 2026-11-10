@@ -4,366 +4,259 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Strong Connections - SEWB Journey</title>
+<title>Strong Connections - Journey to Wellbeing</title>
 
-<style>
-
-body{
-margin:0;
-font-family:Segoe UI,sans-serif;
-background:#f5f5f5;
-color:#222;
-}
-
-.hero{
-height:70vh;
-background:
-linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
-url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee");
-background-size:cover;
-background-position:center;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-color:white;
-}
-
-.hero h1{
-font-size:3rem;
-}
-
-.section{
-padding:40px 20px;
-max-width:1200px;
-margin:auto;
-}
-
-.card{
-background:white;
-padding:20px;
-margin:15px 0;
-border-radius:15px;
-box-shadow:0 3px 12px rgba(0,0,0,.1);
-}
-
-.sewb{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-gap:15px;
-}
-
-.wheel{
-background:#00897b;
-color:white;
-padding:20px;
-border-radius:12px;
-cursor:pointer;
-text-align:center;
-transition:.3s;
-}
-
-.wheel:hover{
-transform:scale(1.05);
-}
-
-.score{
-font-size:2rem;
-font-weight:bold;
-color:#d35400;
-}
-
-button{
-background:#00897b;
-color:white;
-border:none;
-padding:12px 20px;
-border-radius:8px;
-cursor:pointer;
-}
-
-button:hover{
-opacity:.8;
-}
-
-.support{
-background:#fff8e1;
-border-left:6px solid orange;
-padding:15px;
-margin:10px 0;
-}
-
-.progress{
-width:100%;
-height:25px;
-}
-
-footer{
-background:#222;
-color:white;
-padding:30px;
-text-align:center;
-}
-
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="hero">
-<div>
+<header class="hero">
+
+<div class="hero-content">
+
 <h1>Strong Connections</h1>
-<h2>Your Journey to Social & Emotional Wellbeing</h2>
-<p>Culture • Country • Community • Connection</p>
-</div>
-</div>
 
-<section class="section">
-
-<div class="card">
-<h2>Welcome</h2>
+<h2>Journey to Social & Emotional Wellbeing</h2>
 
 <p>
-This wellbeing journey is inspired by the Social and Emotional Wellbeing framework.
-Explore the seven wellbeing areas and build your own wellbeing score.
+Culture • Community • Country • Connection
 </p>
 
-<p class="score">
-Points:
-<span id="points">0</span>
+<button onclick="scrollToGame()">
+Start Journey
+</button>
+
+</div>
+
+</header>
+
+<section class="acknowledgement">
+
+<h2>Acknowledgement of Country</h2>
+
+<p>
+We acknowledge Aboriginal and Torres Strait Islander peoples as the Traditional Custodians of the lands, waters and skies throughout Australia.
 </p>
 
-<progress class="progress" id="progress"
+</section>
+
+<section class="gallery">
+
+<h2>Country & Connection</h2>
+
+<div class="gallery-grid">
+
+<img
+src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"
+alt="Australian Landscape">
+
+<img
+src="https://images.unsplash.com/photo-1506744038136-46273834b3fb"
+alt="Rainforest">
+
+<img
+src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e"
+alt="Nature">
+
+</div>
+
+</section>
+
+<section id="game">
+
+<h2 class="center">
+SEWB Journey Wheel
+</h2>
+
+<div class="wheel-grid">
+
+<button onclick="completeArea(this)">
+🧠 Mind & Emotions
+</button>
+
+<button onclick="completeArea(this)">
+💪 Body
+</button>
+
+<button onclick="completeArea(this)">
+🏞 Country
+</button>
+
+<button onclick="completeArea(this)">
+👪 Family & Kin
+</button>
+
+<button onclick="completeArea(this)">
+🎨 Culture
+</button>
+
+<button onclick="completeArea(this)">
+🤝 Community
+</button>
+
+<button onclick="completeArea(this)">
+✨ Spirit
+</button>
+
+</div>
+
+<div class="score-box">
+
+<h3>
+Wellbeing Points:
+<span id="score">0</span>
+</h3>
+
+<progress
+id="progress"
 value="0"
 max="70">
 </progress>
 
 </div>
 
-<h2>SEWB Journey</h2>
-
-<div class="sewb">
-
-<div class="wheel" onclick="completeChallenge(10)">
-🧠 Mind & Emotions
-</div>
-
-<div class="wheel" onclick="completeChallenge(10)">
-💪 Body
-</div>
-
-<div class="wheel" onclick="completeChallenge(10)">
-👨‍👩‍👧 Family & Kin
-</div>
-
-<div class="wheel" onclick="completeChallenge(10)">
-🤝 Community
-</div>
-
-<div class="wheel" onclick="completeChallenge(10)">
-🎨 Culture
-</div>
-
-<div class="wheel" onclick="completeChallenge(10)">
-🏞 Country
-</div>
-
-<div class="wheel" onclick="completeChallenge(10)">
-✨ Spirit & Ancestors
-</div>
-
-</div>
-
 </section>
 
-<section class="section">
+<section class="challenge">
 
-<div class="card">
+<h2>Daily Challenge</h2>
 
-<h2>Culture & Wellbeing</h2>
-
-<p>
-Aboriginal and Torres Strait Islander Social and Emotional Wellbeing recognises that wellbeing is connected to body, mind and emotions, family, community, culture, Country and spirituality.
-</p>
-
-<p>
-Traditional strengths can include:
-</p>
-
-<ul>
-<li>Yarning</li>
-<li>Connection to Country</li>
-<li>Cultural identity</li>
-<li>Storytelling</li>
-<li>Connection with Elders</li>
-<li>Community activities</li>
-<li>Art and creative expression</li>
-</ul>
-
-</div>
-
-</section>
-
-<section class="section">
-
-<div class="card">
-
-<h2>Daily Wellbeing Challenge</h2>
-
-<button onclick="randomChallenge()">
-Get Challenge
+<button onclick="newChallenge()">
+Generate Challenge
 </button>
 
-<p id="challenge"></p>
+<p id="challengeText">
+
+Click to get today's wellbeing challenge.
+
+</p>
+
+</section>
+
+<section class="yarning">
+
+<h2>Digital Yarning Circle</h2>
+
+<div class="button-grid">
+
+<button onclick="showYarn('stress')">
+Stressed
+</button>
+
+<button onclick="showYarn('sad')">
+Sad
+</button>
+
+<button onclick="showYarn('angry')">
+Angry
+</button>
+
+<button onclick="showYarn('lonely')">
+Lonely
+</button>
+
+</div>
+
+<p id="yarningResult"></p>
+
+</section>
+
+<section class="video-section">
+
+<h2>Wellbeing Learning Videos</h2>
+
+<div class="video-container">
+
+<iframe
+src="https://www.youtube.com/embed/YA3EJ27Y8iA"
+title="Mental Wellbeing"
+allowfullscreen>
+</iframe>
 
 </div>
 
 </section>
 
-<section class="section">
+<section class="supports">
 
-<div class="card">
+<h2>Townsville Support Services</h2>
 
-<h2>Townsville Supports</h2>
+<div class="support-card">
 
-<div class="support">
 <h3>TAIHS</h3>
+
 <p>
-Townsville Aboriginal and Islander Health Service provides culturally appropriate health, youth and social and emotional wellbeing services.
+Townsville Aboriginal and Islander Health Service.
 </p>
 
-<a href="https://taihs.net.au">
-Visit TAIHS
+<a
+target="_blank"
+href="https://taihs.net.au">
+Visit Website
 </a>
 
 </div>
 
-<div class="support">
+<div class="support-card">
+
 <h3>Headspace Townsville</h3>
+
 <p>
-Free youth mental health support for young people aged 12-25.
+Mental health support for young people.
 </p>
 
-<a href="https://headspace.org.au/headspace-centres/townsville/">
-Visit Headspace
+<a
+target="_blank"
+href="https://headspace.org.au/headspace-centres/townsville/">
+Visit Website
 </a>
 
 </div>
 
-<div class="support">
+<div class="support-card">
+
 <h3>Kids Helpline</h3>
 
-<a href="https://kidshelpline.com.au">
-24/7 Support
+<a
+target="_blank"
+href="https://kidshelpline.com.au">
+Get Help
 </a>
 
 </div>
+
+<div class="support-card">
+
+<h3>Lifeline</h3>
+
+<a
+target="_blank"
+href="https://www.lifeline.org.au">
+Get Help
+</a>
 
 </div>
 
 </section>
 
-<section class="section">
+<section class="badges">
 
-<div class="card">
+<h2>Achievements</h2>
 
-<h2>Country Explorer</h2>
-
-<button onclick="showCountry('reef')">
-Great Barrier Reef
-</button>
-
-<button onclick="showCountry('rainforest')">
-Rainforest
-</button>
-
-<button onclick="showCountry('sea')">
-Sea Country
-</button>
-
-<p id="country"></p>
-
+<div id="badgeList">
+🏅 Beginning Your Journey
 </div>
 
 </section>
 
 <footer>
 
-Acknowledgement of Country
-
-<p>
-We acknowledge Aboriginal and Torres Strait Islander peoples as the Traditional Custodians of the lands, waters and skies throughout Australia.
-</p>
+Strong Connections © 2026
 
 </footer>
 
-<script>
-
-let points=0;
-
-function completeChallenge(score){
-
-points += score;
-
-if(points > 70){
-points = 70;
-}
-
-document.getElementById("points").innerHTML = points;
-
-document.getElementById("progress").value = points;
-
-}
-
-function randomChallenge(){
-
-const activities = [
-
-"Go for a 15 minute walk outdoors",
-
-"Speak to a trusted family member",
-
-"Spend 10 minutes practising gratitude",
-
-"Learn something about local culture",
-
-"Listen to music that helps you feel calm",
-
-"Take 5 deep breaths and slow down",
-
-"Write down three things you are proud of"
-
-];
-
-const challenge =
-activities[Math.floor(Math.random()*activities.length)];
-
-document.getElementById("challenge").innerHTML =
-challenge;
-
-}
-
-function showCountry(place){
-
-let text = "";
-
-if(place==="reef"){
-text="The Great Barrier Reef is part of Sea Country and has cultural significance for many Traditional Owner groups.";
-}
-
-if(place==="rainforest"){
-text="Rainforest environments support connection to nature, reflection and wellbeing.";
-}
-
-if(place==="sea"){
-text="Sea Country reflects connection to waters, islands, stories and traditional knowledge.";
-}
-
-document.getElementById("country").innerHTML = text;
-
-}
-
-</script>
+<script src="app.js"></script>
 
 </body>
 </html>
