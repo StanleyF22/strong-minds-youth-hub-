@@ -6,97 +6,297 @@
 <title>Strong Minds Youth Hub</title>
 
 <style>
-
-:root{
---ochre:#c96f1d;
---sand:#e8c07d;
---earth:#954c2e;
---reef:#00a6a6;
---forest:#46754b;
---night:#1a1a2e;
-}
-
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Segoe UI,sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
 }
 
 body{
-background:#f6f7f9;
-color:#222;
-transition:0.4s;
+    background:#f6f7f9;
+    color:#333;
+    line-height:1.6;
 }
 
-.dark{
-background:#111827;
-color:white;
+/* Hero Section */
+.hero{
+    background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),
+    url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3');
+    background-size:cover;
+    background-position:center;
+    color:white;
+    text-align:center;
+    padding:80px 20px;
 }
 
-header{
-background:linear-gradient(135deg,var(--earth),var(--reef));
-color:white;
-padding:60px 20px;
-text-align:center;
+.hero h1{
+    font-size:3rem;
+    margin-bottom:10px;
 }
 
-header h1{
-font-size:3rem;
+.hero p{
+    max-width:700px;
+    margin:auto;
 }
 
+/* Indigenous Inspired Pattern */
 .pattern{
-height:80px;
-background:
-radial-gradient(circle,var(--sand) 10%, transparent 11%) 0 0/40px 40px,
-radial-gradient(circle,var(--ochre) 10%, transparent 11%) 20px 20px/40px 40px,
-var(--earth);
+    height:70px;
+    background:
+      radial-gradient(circle,#e85d04 12%,transparent 13%) 0 0/40px 40px,
+      radial-gradient(circle,#ffba08 12%,transparent 13%) 20px 20px/40px 40px,
+      #264653;
 }
 
+/* Layout */
 .container{
-max-width:1200px;
-margin:auto;
-padding:30px;
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+    padding:40px 0;
+}
+
+.card-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
 }
 
 .card{
-background:white;
-padding:20px;
-margin-bottom:20px;
-border-radius:15px;
-box-shadow:0 4px 12px rgba(0,0,0,.1);
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 4px 12px rgba(0,0,0,.1);
+    transition:0.3s;
 }
 
-.dark .card{
-background:#1f2937;
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card h3{
+    color:#2a9d8f;
+    margin-bottom:15px;
 }
 
 button{
-background:var(--reef);
-color:white;
-border:none;
-padding:12px 18px;
-margin:5px;
-border-radius:8px;
-cursor:pointer;
+    background:#2a9d8f;
+    color:white;
+    border:none;
+    padding:12px 18px;
+    border-radius:8px;
+    cursor:pointer;
 }
 
 button:hover{
-opacity:.9;
+    background:#21867a;
 }
 
-.map-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
+.resource-links a{
+    display:block;
+    margin:10px 0;
+    text-decoration:none;
+    color:#006d77;
+    font-weight:600;
 }
 
-.region{
-cursor:pointer;
-background:var(--sand);
-padding:20px;
-border-radius:12px;
+.quiz-box{
+    background:#fff;
+    padding:30px;
+    border-radius:15px;
+    margin-top:30px;
+    box-shadow:0 4px 10px rgba(0,0,0,.08);
 }
 
-.quote{
-margin-top:15
+footer{
+    background:#264653;
+    color:white;
+    text-align:center;
+    padding:30px;
+    margin-top:40px;
+}
+
+.helpline{
+    background:#ffe8d6;
+    border-left:6px solid #e76f51;
+    padding:15px;
+    border-radius:10px;
+    margin:15px 0;
+}
+
+.disclaimer{
+    background:#edf6f9;
+    padding:15px;
+    border-radius:10px;
+    margin-top:20px;
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+    <h1>Strong Minds Youth Hub</h1>
+    <p>
+        A safe place for young people to learn about mental health,
+        wellbeing, culture, resilience, and healthy choices.
+    </p>
+</section>
+
+<div class="pattern"></div>
+
+<div class="container">
+
+    <h2 style="margin-bottom:25px;">Your Wellbeing Matters</h2>
+
+    <div class="card-grid">
+
+        <div class="card">
+            <h3>🧠 Mental Health</h3>
+            <p>
+                Everyone has mental health just like everyone has physical health.
+                It's okay to ask for help if you're feeling overwhelmed,
+                stressed, anxious, sad, or disconnected.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>🌿 Culture & Connection</h3>
+            <p>
+                Connection to family, community, Country, culture,
+                language and identity can support wellbeing,
+                resilience and belonging.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>💬 Looking After Yourself</h3>
+            <p>
+                Healthy sleep, exercise, friendships,
+                hobbies and talking to trusted adults
+                all contribute to positive mental health.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="quiz-box">
+        <h2>Check In With Yourself</h2>
+
+        <p style="margin-top:15px;">
+            How are you feeling today?
+        </p>
+
+        <br>
+
+        <button onclick="showMessage('happy')">😊 Good</button>
+        <button onclick="showMessage('okay')">🙂 Okay</button>
+        <button onclick="showMessage('struggling')">😔 Not Great</button>
+
+        <p id="result" style="margin-top:20px;font-weight:bold;"></p>
+    </div>
+
+    <div class="quiz-box">
+        <h2>Substance Use Education</h2>
+
+        <p style="margin-top:15px;">
+            Drugs, alcohol and vaping can affect developing brains,
+            learning, sport performance, relationships and mental health.
+        </p>
+
+        <ul style="margin-top:15px;padding-left:20px;">
+            <li>Know the facts before making decisions.</li>
+            <li>Talk to trusted adults and health professionals.</li>
+            <li>Learn how substances can affect mental wellbeing.</li>
+            <li>Support friends by encouraging healthy help-seeking.</li>
+        </ul>
+    </div>
+
+    <div class="quiz-box resource-links">
+
+        <h2>📞 Helplines & Support</h2>
+
+        <div class="helpline">
+            If someone is in immediate danger or a medical emergency,
+            call <strong>000</strong>.
+        </div>
+
+        <a href="https://kidshelpline.com.au" target="_blank">
+            Kids Helpline (24/7)
+        </a>
+
+        <a href="https://headspace.org.au" target="_blank">
+            Headspace
+        </a>
+
+        <a href="https://beyondblue.org.au" target="_blank">
+            Beyond Blue
+        </a>
+
+        <a href="https://reachout.com" target="_blank">
+            ReachOut Australia
+        </a>
+
+        <a href="https://www.healthdirect.gov.au" target="_blank">
+            Healthdirect Australia
+        </a>
+
+    </div>
+
+    <div class="quiz-box resource-links">
+
+        <h2>📚 Substance Use Information</h2>
+
+        <a href="https://adf.org.au" target="_blank">
+            Alcohol and Drug Foundation
+        </a>
+
+        <a href="https://positivechoices.org.au" target="_blank">
+            Positive Choices
+        </a>
+
+        <a href="https://headspace.org.au" target="_blank">
+            Headspace Alcohol & Other Drugs Support
+        </a>
+
+    </div>
+
+    <div class="disclaimer">
+        <strong>Acknowledgement:</strong>
+        We acknowledge Aboriginal and Torres Strait Islander peoples as the
+        Traditional Custodians of Australia and recognise their continuing
+        connection to Country, culture and community.
+    </div>
+
+</div>
+
+<footer>
+    Strong Minds Youth Hub • Supporting youth wellbeing, resilience and connection.
+</footer>
+
+<script>
+function showMessage(mood){
+
+    let message = "";
+
+    if(mood === "happy"){
+        message =
+        "Awesome! Keep doing things that support your wellbeing and stay connected with people who care about you.";
+    }
+
+    if(mood === "okay"){
+        message =
+        "It's okay to have ups and downs. Consider talking with a friend, family member, teacher or counsellor.";
+    }
+
+    if(mood === "struggling"){
+        message =
+        "You're not alone. Reach out to a trusted adult or one of the support services listed below today.";
+    }
+
+    document.getElementById("result").innerText = message;
+}
+</script>
+
+</body>
+</html>
