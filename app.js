@@ -1,4 +1,8 @@
-let score = 0;
+let score =
+parseInt(
+localStorage.getItem("score")
+) || 0;
+
 
 function scrollToGame(){
 
