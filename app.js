@@ -160,3 +160,42 @@ document.getElementById(
 ).innerHTML=text;
 
 }
+function checkBadges(){
+
+const badgeList =
+document.getElementById("badgeList");
+
+if(score >= 20 &&
+!badgeList.innerHTML.includes("Explorer")){
+
+badgeList.innerHTML +=
+"<br>🗺 Explorer";
+
+}
+
+if(score >= 40 &&
+!badgeList.innerHTML.includes("Community Champion")){
+
+badgeList.innerHTML +=
+"<br>🤝 Community Champion";
+
+}
+
+if(score >= 60 &&
+!badgeList.innerHTML.includes("Culture Keeper")){
+
+badgeList.innerHTML +=
+"<br>🎨 Culture Keeper";
+
+}
+
+if(score >= 70 &&
+!badgeList.innerHTML.includes("SEWB Master")){
+
+badgeList.innerHTML +=
+"<br>👑 SEWB Master";
+
+}
+
+}
+
