@@ -122,3 +122,41 @@ document.getElementById(
 ).innerText = response;
 
 }
+function showLocation(place){
+
+let text="";
+
+switch(place){
+
+case "castle":
+text=
+"Castle Hill is a place for walking, fitness and wellbeing.";
+break;
+
+case "magnetic":
+text=
+"Magnetic Island encourages connection with sea Country and nature.";
+break;
+
+case "strand":
+text=
+"The Strand is a community gathering place supporting connection and recreation.";
+break;
+
+case "taihs":
+text=
+"TAIHS offers culturally appropriate health, youth and social and emotional wellbeing services.";
+break;
+
+case "headspace":
+text=
+"Headspace Townsville provides support for young people aged 12-25.";
+break;
+
+}
+
+document.getElementById(
+"locationInfo"
+).innerHTML=text;
+
+}
