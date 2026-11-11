@@ -198,4 +198,40 @@ badgeList.innerHTML +=
 }
 
 }
+function visitLocation(location){
+
+let story="";
+
+switch(location){
+
+case "magnetic":
+story="You travelled to Magnetic Island. Spend time outdoors and connect with nature and sea Country. +10 points";
+break;
+
+case "castle":
+story="You climbed Castle Hill. Physical activity supports wellbeing. +10 points";
+break;
+
+case "strand":
+story="You visited Sea Country and reflected on connection and wellbeing. +10 points";
+break;
+
+case "community":
+story="You attended a community event and strengthened connections. +10 points";
+break;
+
+}
+
+score += 10;
+
+document.getElementById("score").innerText=score;
+
+document.getElementById("journeyStory").innerHTML=story;
+
+saveProgress();
+
+checkBadges();
+
+}
+
 
