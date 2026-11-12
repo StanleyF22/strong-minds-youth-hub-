@@ -1,3 +1,56 @@
+let journeyStep=1;
+
+function visitLocation(location){
+
+score+=10;
+
+saveProgress();
+
+document.getElementById(
+"score"
+).innerText=score;
+
+if(journeyStep<=4){
+
+document
+.getElementById(
+"step"+journeyStep
+)
+.classList.add(
+"completed"
+);
+
+journeyStep++;
+
+}
+
+const stories = {
+
+magnetic:
+"You explored Magnetic Island and reflected on connection to Sea Country.",
+
+castle:
+"You climbed Castle Hill and strengthened your body and mind.",
+
+strand:
+"You paused at the Strand and focused on gratitude and wellbeing.",
+
+taihs:
+"You visited TAIHS and learned about culturally safe wellbeing services.",
+
+headspace:
+"You visited headspace and discovered youth mental health supports."
+
+};
+
+document.getElementById(
+"journeyStory"
+).innerHTML=
+stories[location];
+
+checkBadges();
+
+}
 let score =
 parseInt(
 localStorage.getItem("score")
