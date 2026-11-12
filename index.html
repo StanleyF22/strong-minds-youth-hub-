@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Strong Connections - Journey to Wellbeing</title>
+<title>Strong Connections | Youth Wellbeing Journey</title>
 
 <link rel="stylesheet" href="style.css">
+
+<link
+rel="stylesheet"
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+
+<script
+src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+
 </head>
 
 <body>
@@ -17,15 +29,18 @@
 
 <h1>Strong Connections</h1>
 
-<h2>Journey to Social & Emotional Wellbeing</h2>
+<h2>Journey Through Country</h2>
 
 <p>
-Culture • Community • Country • Connection
+Building strong minds through culture,
+community and connection.
 </p>
 
-<button onclick="scrollToGame()">
-Start Journey
+<a href="#journey">
+<button>
+Begin Your Journey
 </button>
+</a>
 
 </div>
 
@@ -36,161 +51,130 @@ Start Journey
 <h2>Acknowledgement of Country</h2>
 
 <p>
-We acknowledge Aboriginal and Torres Strait Islander peoples as the Traditional Custodians of the lands, waters and skies throughout Australia.
+We acknowledge Aboriginal and Torres Strait Islander peoples
+as the Traditional Custodians of Country throughout Australia.
+We pay our respects to Elders past and present.
 </p>
 
 </section>
-<section class="country-map">
 
-<h2>🗺 Journey Through Country</h2>
+<section class="avatar">
 
-<p>
-Travel around Townsville and unlock wellbeing stories.
+<h2>Create Your Avatar</h2>
+
+<select id="avatarFace">
+
+<option>😀</option>
+<option>😎</option>
+<option>😊</option>
+<option>🤠</option>
+<option>😁</option>
+
+</select>
+
+<select id="avatarColour">
+
+<option value="#00897b">Reef Blue</option>
+<option value="#c56b28">Ochre</option>
+<option value="#2e7d32">Rainforest Green</option>
+<option value="#9c27b0">Purple</option>
+
+</select>
+
+<button onclick="createAvatar()">
+Create Avatar
+</button>
+
+<div id="avatarDisplay">
+😀
+</div>
+
+</section>
+
+<section>
+
+<h2 class="center">
+🌿 Social & Emotional Wellbeing Wheel
+</h2>
+
+<div class="wheel-grid">
+
+<button onclick="completeArea(this)">
+🧠<br>Mind
+</button>
+
+<button onclick="completeArea(this)">
+💪<br>Body
+</button>
+
+<button onclick="completeArea(this)">
+👪<br>Family
+</button>
+
+<button onclick="completeArea(this)">
+🤝<br>Community
+</button>
+
+<button onclick="completeArea(this)">
+🎨<br>Culture
+</button>
+
+<button onclick="completeArea(this)">
+🏞<br>Country
+</button>
+
+<button onclick="completeArea(this)">
+✨<br>Spirit
+</button>
+
+</div>
+
+<div class="score-box">
+
+<h3>
+Wellbeing XP:
+<span id="score">0</span>
+</h3>
+
+<progress
+id="progress"
+value="0"
+max="100">
+</progress>
+
+</div>
+
+<p id="sewbDescription"></p>
+
+</section>
+
+<section id="journey">
+
+<h2 class="center">
+🗺️ Explore Townsville
+</h2>
+
+<p class="center">
+Tap locations and complete wellbeing quests.
 </p>
 
-<div class="map-wrapper">
+<div id="townsvilleMap"></div>
 
-<img
-src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Townsville_from_Castle_Hill.jpg/1280px-Townsville_from_Castle_Hill.jpg"
-class="map-image">
+<div id="journeyStory" class="story-box">
 
-<button
-class="map-pin magnetic"
-onclick="visitLocation('magnetic')">
-
-🏝
-
-</button>
-
-<button
-class="map-pin castle"
-onclick="visitLocation('castle')">
-
-⛰
-
-</button>
-
-<button
-class="map-pin strand"
-onclick="visitLocation('strand')">
-
-🌊
-
-</button>
-
-<button
-class="map-pin taihs"
-onclick="visitLocation('taihs')">
-
-❤️
-
-</button>
-
-<button
-class="map-pin headspace"
-onclick="visitLocation('headspace')">
-
-🧠
-
-</button>
-
-</div>
-
-<div id="journeyStory"></div>
-<div class="journey-path">
-
-<div id="step1" class="path-node">
-🏝
-</div>
-
-<div id="step2" class="path-node">
-⛰
-</div>
-
-<div id="step3" class="path-node">
-🌊
-</div>
-
-<div id="step4" class="path-node">
-🤝
-</div>
+Choose a location to begin your story.
 
 </div>
 
 </section>
 
-<section class="gallery">
+<section>
 
-<h2>Country & Connection</h2>
+<h2 class="center">
+🎯 Today's Challenge
+</h2>
 
-<div class="gallery-grid">
-
-<img
-src="https://www.dropbox.com/scl/fi/pa3sowbl6256kr2du46ao/StanleyFAV2.jpg?rlkey=y9vqsosynq5exn2bjvwgizihc&st=n1imglyu&dl=0"
-alt="Australian Landscape">
-
-<img
-src="https://images.unsplash.com/photo-1506744038136-46273834b3fb"
-alt="Rainforest">
-
-<img
-src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e"
-alt="Nature">
-
-</div>
-
-</section>
-<section class="sewb-section">
-
-<h2>SEWB Wheel</h2>
-
-<div class="sewb-wheel">
-
-<div class="segment" onclick="completeArea(this)">
-🧠
-<span>Mind</span>
-</div>
-
-<div class="segment" onclick="completeArea(this)">
-💪
-<span>Body</span>
-</div>
-
-<div class="segment" onclick="completeArea(this)">
-👪
-<span>Family</span>
-</div>
-
-<div class="segment" onclick="completeArea(this)">
-🤝
-<span>Community</span>
-</div>
-
-<div class="segment" onclick="completeArea(this)">
-🎨
-<span>Culture</span>
-</div>
-
-<div class="segment" onclick="completeArea(this)">
-🏞
-<span>Country</span>
-</div>
-
-<div class="segment" onclick="completeArea(this)">
-✨
-<span>Spirit</span>
-</div>
-
-</div>
-
-</sectionhttps://previews.dropbox.com/p/thumb/ADRQAZbPF9aRMLlvTQ5uqzXfw4nJPGPIpd3343Osm_xZraA9IpsAY4drYGyOgJ9BMufwcv9wQPoKeny9gh_1Qnriue00k8Y7vSLcve8YuE7kfi0QMB4t6GYly947mJBA0sP-vc5eEYGVOq7nmlQ7E0FRqZdgZaH766MXGvSaEHhF0_ZbkyGOdoucyowQhxoIodC-hqraCMVWasJqXa3WgMNUlgLcV77JYO8hwFlLMg5Jxj_-TAEF4ClwKgqiyXf9YruE6ePda0h_mJVJjiFBv5kNh1TekdfFV5YVsrkqOdlS0NgkLex2gxGcK2_9RopG9ANpHJMK82w1RCojYH7atAc5DbL3xZTChaa5EEwfsG9PMf2Z1oHFbUnkqqcyKf0aaYAPEBdW2N0uqmVbhhRUP881/p.jpeg?is_prewarmed=truehttps://previews.dropbox.com/p/thumb/ADRQAZbPF9aRMLlvTQ5uqzXfw4nJPGPIpd3343Osm_xZraA9IpsAY4drYGyOgJ9BMufwcv9wQPoKeny9gh_1Qnriue00k8Y7vSLcve8YuE7kfi0QMB4t6GYly947mJBA0sP-vc5eEYGVOq7nmlQ7E0FRqZdgZaH766MXGvSaEHhF0_ZbkyGOdoucyowQhxoIodC-hqraCMVWasJqXa3WgMNUlgLcV77JYO8hwFlLMg5Jxj_-TAEF4ClwKgqiyXf9YruE6ePda0h_mJVJjiFBv5kNh1TekdfFV5YVsrkqOdlS0NgkLex2gxGcK2_9RopG9ANpHJMK82w1RCojYH7atAc5DbL3xZTChaa5EEwfsG9PMf2Z1oHFbUnkqqcyKf0aaYAPEBdW2N0uqmVbhhRUP881/p.jpeg?is_prewarmed=true>
-
-  
-</section>
-
-<section class="challenge">
-
-<h2>Daily Challenge</h2>
+<div class="card">
 
 <button onclick="newChallenge()">
 Generate Challenge
@@ -198,15 +182,19 @@ Generate Challenge
 
 <p id="challengeText">
 
-Click to get today's wellbeing challenge.
+Click the button to receive a challenge.
 
 </p>
 
+</div>
+
 </section>
 
-<section class="yarning">
+<section>
 
-<h2>Digital Yarning Circle</h2>
+<h2 class="center">
+🗣️ Digital Yarning Circle
+</h2>
 
 <div class="button-grid">
 
@@ -218,133 +206,129 @@ Stressed
 Sad
 </button>
 
-<button onclick="showYarn('angry')">
-Angry
-</button>
-
 <button onclick="showYarn('lonely')">
 Lonely
 </button>
 
+<button onclick="showYarn('angry')">
+Angry
+</button>
+
 </div>
 
-<p id="yarningResult"></p>
+<div class="card">
+
+<p id="yarningResult">
+Choose how you're feeling.
+</p>
+
+</div>
 
 </section>
 
-<section class="video-section">
+<section>
 
-<h2>Wellbeing Learning Videos</h2>
+<h2 class="center">
+🏆 Achievements
+</h2>
+
+<div id="badgeList">
+
+<div class="badge">
+🌱 First Steps
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="center">
+🎨 Culture & Country Gallery
+</h2>
+
+<div class="gallery-grid">
+
+<img
+src="https://images.unsplash.com/photo-1506744038136-46273834b3fb"
+alt="Country"
+>
+
+<img
+src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"
+alt="Country"
+>
+
+<img
+src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e"
+alt="Country"
+>
+
+</div>
+
+<p class="centre-text">
+Replace these placeholders with licensed First Nations artwork
+or images supplied by local artists and communities.
+</p>
+
+</section>
+
+<section>
+
+<h2 class="center">
+🎬 Learning Hub
+</h2>
 
 <div class="video-container">
 
 <iframe
-src="https://www.youtube.com/embed/YA3EJ27Y8iA"
-title="Mental Wellbeing"
+src="https://www.youtube.com/embed/Pahz_WBSSdA"
+title="Wellbeing"
 allowfullscreen>
 </iframe>
 
 </div>
 
-<section class="townsville-map">
-
-<h2>Explore Townsville</h2>
-
-<div class="map-grid">
-
-<div onclick="showLocation('castle')">
-🏔 Castle Hill
-</div>
-
-<div onclick="showLocation('magnetic')">
-🏝 Magnetic Island
-</div>
-
-<div onclick="showLocation('strand')">
-🌊 The Strand
-</div>
-
-<div onclick="showLocation('taihs')">
-❤️ TAIHS
-</div>
-
-<div onclick="showLocation('headspace')">
-🧠 Headspace
-</div>
-
-</div>
-
-<p id="locationInfo"></p>
-
-<section class="rpg-section">
-
-<h2>🎮 Journey Through Country</h2>
-
-<p>
-Travel through significant places around Townsville and build your wellbeing.
-</p>
-
-<div class="journey-map">
-
-<div class="journey-stop"
-onclick="visitLocation('magnetic')">
-🏝 Magnetic Island
-</div>
-
-<div class="journey-stop"
-onclick="visitLocation('castle')">
-⛰ Castle Hill
-</div>
-
-<div class="journey-stop"
-onclick="visitLocation('strand')">
-🌊 Sea Country
-</div>
-
-<div class="journey-stop"
-onclick="visitLocation('community')">
-🤝 Community Hub
-</div>
-
-</div>
-
-<div id="journeyStory"></div>
-
-
 </section>
 
-<section class="supports">
+<section>
 
-<h2>Townsville Support Services</h2>
+<h2 class="center">
+📍 Community Support Services
+</h2>
+
+<div class="supports">
 
 <div class="support-card">
 
 <h3>TAIHS</h3>
 
 <p>
-Townsville Aboriginal and Islander Health Service.
+Aboriginal and Torres Strait Islander health,
+social and emotional wellbeing and youth services.
 </p>
 
 <a
 target="_blank"
 href="https://taihs.net.au">
-Visit Website
+Visit TAIHS
 </a>
 
 </div>
 
 <div class="support-card">
 
-<h3>Headspace Townsville</h3>
+<h3>headspace Townsville</h3>
 
 <p>
-Mental health support for young people.
+Mental health support for young people aged 12-25.
 </p>
 
 <a
 target="_blank"
 href="https://headspace.org.au/headspace-centres/townsville/">
-Visit Website
+Visit headspace
 </a>
 
 </div>
@@ -353,10 +337,14 @@ Visit Website
 
 <h3>Kids Helpline</h3>
 
+<p>
+24/7 confidential support.
+</p>
+
 <a
 target="_blank"
 href="https://kidshelpline.com.au">
-Get Help
+Visit
 </a>
 
 </div>
@@ -365,29 +353,31 @@ Get Help
 
 <h3>Lifeline</h3>
 
+<p>
+24/7 crisis support.
+</p>
+
 <a
 target="_blank"
 href="https://www.lifeline.org.au">
-Get Help
+Visit
 </a>
 
 </div>
 
-</section>
-
-<section class="badges">
-
-<h2>Achievements</h2>
-
-<div id="badgeList">
-🏅 Beginning Your Journey
 </div>
 
 </section>
 
 <footer>
 
-Strong Connections © 2026
+<p>
+Strong Connections • Youth Wellbeing Game
+</p>
+
+<p>
+Culture • Community • Country • Connection
+</p>
 
 </footer>
 
