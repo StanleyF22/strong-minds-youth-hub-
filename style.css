@@ -1,3 +1,28 @@
+:root{
+
+--reef:#00796b;
+--sea:#00acc1;
+--rainforest:#2e7d32;
+
+--ochre:#c56b28;
+--earth:#8d4e2f;
+--sand:#e7c490;
+
+--sky:#5dade2;
+
+--dark:#1b1f24;
+--light:#faf7f2;
+}
+
+body{
+background:
+linear-gradient(
+180deg,
+#f6f3ed,
+#eef7fa
+);
+}
+
 body{
 margin:0;
 font-family:Segoe UI,sans-serif;
@@ -190,4 +215,51 @@ transition:.3s;
 .journey-stop:hover{
 transform:scale(1.05);
 }
+body::before{
 
+content:"";
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:
+
+radial-gradient(circle at 10% 20%,
+rgba(197,107,40,.10),
+transparent 15%),
+
+radial-gradient(circle at 80% 70%,
+rgba(0,172,193,.10),
+transparent 20%),
+
+radial-gradient(circle at 50% 50%,
+rgba(46,125,50,.08),
+transparent 30%);
+
+pointer-events:none;
+
+z-index:-1;
+
+animation:countryFlow 20s linear infinite;
+}
+
+@keyframes countryFlow{
+
+0%{
+transform:translateX(0);
+}
+
+50%{
+transform:translateX(-20px);
+}
+
+100%{
+transform:translateX(0);
+}
+
+}
