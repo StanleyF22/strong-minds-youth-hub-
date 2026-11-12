@@ -64,6 +64,46 @@ left:45%;
 top:60%;
 left:58%;
 }
+.journey-path{
+
+display:flex;
+
+justify-content:center;
+
+gap:50px;
+
+margin-top:30px;
+}
+
+.path-node{
+
+width:80px;
+height:80px;
+
+border-radius:50%;
+
+background:#ddd;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:2rem;
+
+transition:.5s;
+}
+
+.completed{
+
+background:var(--reef);
+
+color:white;
+
+box-shadow:0 0 20px var(--sea);
+
+}
 
 @keyframes bounce{
 
