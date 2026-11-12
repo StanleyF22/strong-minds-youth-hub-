@@ -1,150 +1,187 @@
-let journeyStep=1;
+// =========================
+// STRONG CONNECTIONS APP
+// =========================
 
-function visitLocation(location){
+let score =
+parseInt(localStorage.getItem("score")) || 0;
 
-score+=10;
+let badges =
+JSON.parse(localStorage.getItem("badges")) || [];
 
-saveProgress();
+function saveProgress() {
 
-document.getElementById(
-"score"
-).innerText=score;
-
-if(journeyStep<=4){
-
-document
-.getElementById(
-"step"+journeyStep
-)
-.classList.add(
-"completed"
+localStorage.setItem(
+"score",
+score
 );
 
-journeyStep++;
+localStorage.setItem(
+"badges",
+JSON.stringify(badges)
+);
 
 }
 
-const stories = {
+function updateUI() {
 
-magnetic:
-"You explored Magnetic Island and reflected on connection to Sea Country.",
+const scoreElement =
+document.getElementById("score");
 
-castle:
-"You climbed Castle Hill and strengthened your body and mind.",
+const progressElement =
+document.getElementById("progress");
 
-strand:
-"You paused at the Strand and focused on gratitude and wellbeing.",
+if(scoreElement){
+scoreElement.innerText = score;
+}
 
-taihs:
-"You visited TAIHS and learned about culturally safe wellbeing services.",
+if(progressElement){
+progressElement.value =
+Math.min(score,100);
+}
 
-headspace:
-"You visited headspace and discovered youth mental health supports."
+}
 
-};
+// =========================
+// AVATAR
+// =========================
 
+function createAvatar(){
+
+const face =
 document.getElementById(
-"journeyStory"
-).innerHTML=
-stories[location];
+"avatarFace"
+).value;
 
-checkBadges();
+const colour =
+document.getElementById(
+"avatarColour"
+).value;
 
-}
-let score =
-parseInt(
-localStorage.getItem("score")
-) || 0;
+const avatar =
+document.getElementById(
+"avatarDisplay"
+);
 
+avatar.innerHTML = face;
 
-function scrollToGame(){
-
-document
-.getElementById("game")
-.scrollIntoView({
-behavior:"smooth"
-});
+avatar.style.background =
+colour;
 
 }
+
+// =========================
+// SEWB WHEEL
+// =========================
 
 function completeArea(button){
 
-if(button.disabled) return;
+if(button.dataset.done){
+return;
+}
 
-button.disabled = true;
+button.dataset.done =
+true;
 
 button.style.background =
 "#4caf50";
 
 score += 10;
 
-document.getElementById("score")
-.innerText = score;
+updateUI();
 
-document.getElementById("progress")
-.value = score;
+saveProgress();
 
 checkBadges();
 
 }
 
-function checkBadges(){
+function showSEWB(area){
 
-const badgeList =
-document.getElementById("badgeList");
+const descriptions = {
 
-if(score >= 30 &&
-!badgeList.innerHTML.includes("Community Champion")){
+mind:
+"Strong minds are built through learning how to recognise emotions, seek help and develop resilience.",
 
-badgeList.innerHTML +=
-"<br>🥈 Community Champion";
+body:
+"Looking after your body through sleep, movement and healthy food supports wellbeing.",
+
+family:
+"Family and kinship are important sources of identity, strength and support.",
+
+community:
+"Communities provide belonging, connection and opportunities to support each other.",
+
+culture:
+"Culture strengthens identity, pride and connection.",
+
+country:
+"Connection to Country supports healing, reflection and wellbeing.",
+
+spirit:
+"Spirituality and ancestors can provide strength, meaning and guidance."
+
+};
+
+const target =
+document.getElementById(
+"sewbDescription"
+);
+
+if(target){
+
+target.innerHTML =
+descriptions[area];
 
 }
 
-if(score >= 70 &&
-!badgeList.innerHTML.includes("SEWB Master")){
-
-badgeList.innerHTML +=
-"<br>🥇 SEWB Master";
-
 }
-}
+
+// =========================
+// DAILY CHALLENGES
+// =========================
 
 function newChallenge(){
 
-const challenges = [
+const challenges=[
 
-"Go for a 15 minute walk outdoors.",
+"🌿 Spend 15 minutes outdoors listening to nature.",
 
-"Spend 10 minutes in nature.",
+"💧 Drink more water today and check in with how you're feeling.",
 
-"Talk with a trusted family member.",
+"📞 Call or message a trusted family member.",
 
-"Practice gratitude and write three positive things.",
+"🎵 Listen to a song that helps you feel calm and positive.",
 
-"Listen to relaxing music.",
+"🙏 Write three things you're grateful for.",
 
-"Help someone today.",
+"🚶 Take a short walk around your neighbourhood.",
 
-"Learn something about local First Nations culture.",
+"🗣️ Spend time talking with a trusted friend.",
 
-"Connect with community.",
+"🌅 Watch a sunrise or sunset and reflect.",
 
-"Practice deep breathing for two minutes."
+"🎨 Draw, paint or create something today.",
+
+"🤝 Do one act of kindness."
 
 ];
 
 const random =
 Math.floor(
-Math.random()*challenges.length
+Math.random() *
+challenges.length
 );
 
 document.getElementById(
 "challengeText"
-).innerText =
+).innerHTML =
 challenges[random];
 
 }
+
+// =========================
+// YARNING CIRCLE
+// =========================
 
 function showYarn(type){
 
@@ -153,142 +190,332 @@ let response = "";
 switch(type){
 
 case "stress":
+
 response =
-"Take a few slow breaths. Consider going outside and connecting with nature or talking to someone you trust.";
+"Take a few slow breaths. Go outside if you can and spend some time in nature or with someone you trust.";
+
 break;
 
 case "sad":
-response =
-"It's OK to seek support. Reach out to family, friends or a support service.";
-break;
 
-case "angry":
 response =
-"Step away, breathe slowly and give yourself time before responding.";
+"You're not alone. Reach out to family, community, friends or support services.";
+
 break;
 
 case "lonely":
+
 response =
-"Connection is important. Contact a friend, family member, youth group or support service.";
+"Connection is important. Consider joining a community, sporting or cultural activity.";
+
 break;
+
+case "angry":
+
+response =
+"Pause, breathe slowly and take a short break before responding.";
+
+break;
+
+default:
+
+response =
+"Check in with yourself and remember support is available.";
 
 }
 
 document.getElementById(
 "yarningResult"
-).innerText = response;
-
-}
-function showLocation(place){
-
-let text="";
-
-switch(place){
-
-case "castle":
-text=
-"Castle Hill is a place for walking, fitness and wellbeing.";
-break;
-
-case "magnetic":
-text=
-"Magnetic Island encourages connection with sea Country and nature.";
-break;
-
-case "strand":
-text=
-"The Strand is a community gathering place supporting connection and recreation.";
-break;
-
-case "taihs":
-text=
-"TAIHS offers culturally appropriate health, youth and social and emotional wellbeing services.";
-break;
-
-case "headspace":
-text=
-"Headspace Townsville provides support for young people aged 12-25.";
-break;
+).innerHTML =
+response;
 
 }
 
-document.getElementById(
-"locationInfo"
-).innerHTML=text;
+// =========================
+// ACHIEVEMENTS
+// =========================
 
+function addBadge(name){
+
+if(badges.includes(name)){
+return;
 }
-function checkBadges(){
+
+badges.push(name);
 
 const badgeList =
-document.getElementById("badgeList");
+document.getElementById(
+"badgeList"
+);
 
-if(score >= 20 &&
-!badgeList.innerHTML.includes("Explorer")){
+const badge =
+document.createElement("div");
 
-badgeList.innerHTML +=
-"<br>🗺 Explorer";
+badge.className =
+"badge";
 
-}
+badge.innerText =
+name;
 
-if(score >= 40 &&
-!badgeList.innerHTML.includes("Community Champion")){
+badgeList.appendChild(
+badge
+);
 
-badgeList.innerHTML +=
-"<br>🤝 Community Champion";
-
-}
-
-if(score >= 60 &&
-!badgeList.innerHTML.includes("Culture Keeper")){
-
-badgeList.innerHTML +=
-"<br>🎨 Culture Keeper";
+saveProgress();
 
 }
 
-if(score >= 70 &&
-!badgeList.innerHTML.includes("SEWB Master")){
+function checkBadges(){
 
-badgeList.innerHTML +=
-"<br>👑 SEWB Master";
+if(score >= 20){
+addBadge("🏝 Explorer");
+}
 
+if(score >= 40){
+addBadge("🤝 Community Champion");
+}
+
+if(score >= 60){
+addBadge("🎨 Culture Keeper");
+}
+
+if(score >= 80){
+addBadge("🌿 Wellbeing Warrior");
+}
+
+if(score >= 100){
+addBadge("👑 Strong Connections Master");
 }
 
 }
+
+// =========================
+// TOWNSVILLE RPG JOURNEY
+// =========================
+
 function visitLocation(location){
 
-let story="";
+let message = "";
 
 switch(location){
 
-case "magnetic":
-story="You travelled to Magnetic Island. Spend time outdoors and connect with nature and sea Country. +10 points";
-break;
-
 case "castle":
-story="You climbed Castle Hill. Physical activity supports wellbeing. +10 points";
+
+message =
+"⛰ Castle Hill Quest Complete! Physical activity strengthens body and mind. +10 XP";
+
 break;
 
 case "strand":
-story="You visited Sea Country and reflected on connection and wellbeing. +10 points";
+
+message =
+"🌊 The Strand Quest Complete! Practise mindfulness near the water. +10 XP";
+
 break;
 
-case "community":
-story="You attended a community event and strengthened connections. +10 points";
+case "magnetic":
+
+message =
+"🏝 Magnetic Island Quest Complete! Reflect on connection to Sea Country. +10 XP";
+
 break;
+
+case "taihs":
+
+message =
+"❤️ You discovered local culturally appropriate wellbeing support. +10 XP";
+
+break;
+
+case "headspace":
+
+message =
+"🧠 You learned where to access youth mental health support. +10 XP";
+
+break;
+
+default:
+
+message =
+"Journey updated.";
 
 }
 
 score += 10;
 
-document.getElementById("score").innerText=score;
-
-document.getElementById("journeyStory").innerHTML=story;
+updateUI();
 
 saveProgress();
 
 checkBadges();
 
+document.getElementById(
+"journeyStory"
+).innerHTML =
+message;
+
 }
 
+// =========================
+// LEAFLET MAP
+// =========================
 
+function initialiseMap(){
+
+const mapTarget =
+document.getElementById(
+"townsvilleMap"
+);
+
+if(!mapTarget){
+return;
+}
+
+const map =
+L.map("townsvilleMap")
+.setView(
+[-19.2589,146.8169],
+11
+);
+
+L.tileLayer(
+"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+{
+attribution:
+"© OpenStreetMap contributors"
+}
+)
+.addTo(map);
+
+const locations = [
+
+{
+name:"Magnetic Island",
+coords:[
+-19.155,
+146.85
+],
+action:"magnetic"
+},
+
+{
+name:"Castle Hill",
+coords:[
+-19.274,
+146.80
+],
+action:"castle"
+},
+
+{
+name:"The Strand",
+coords:[
+-19.248,
+146.817
+],
+action:"strand"
+},
+
+{
+name:"TAIHS",
+coords:[
+-19.249,
+146.772
+],
+action:"taihs"
+},
+
+{
+name:"headspace Townsville",
+coords:[
+-19.315,
+146.729
+],
+action:"headspace"
+}
+
+];
+
+locations.forEach(
+location => {
+
+L.marker(
+location.coords
+)
+
+.addTo(map)
+
+.bindPopup(
+location.name
+)
+
+.on(
+"click",
+function(){
+
+visitLocation(
+location.action
+);
+
+}
+);
+
+}
+);
+
+}
+
+// =========================
+// LOAD SAVED BADGES
+// =========================
+
+function loadBadges(){
+
+const badgeList =
+document.getElementById(
+"badgeList"
+);
+
+if(!badgeList){
+return;
+}
+
+badges.forEach(
+badgeName => {
+
+const badge =
+document.createElement(
+"div"
+);
+
+badge.className =
+"badge";
+
+badge.innerText =
+badgeName;
+
+badgeList.appendChild(
+badge
+);
+
+}
+);
+
+}
+
+// =========================
+// START APP
+// =========================
+
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+updateUI();
+
+loadBadges();
+
+initialiseMap();
+
+}
+);
